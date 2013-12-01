@@ -17,6 +17,5 @@
     "jquery": "~2.0.3",
     "console-polyfill": "~0.1.0",
     "angular": "1.2.1",
-    "xdmessage": "~1.0.0"
   }
 }
