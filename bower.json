@@ -1,6 +1,6 @@
 {
-  "name": "ng-brunch",
-  "repo": "kenhkan/ng-brunch",
+  "name": "angular-xdmessage",
+  "repo": "kenhkan/angular-xdmessage",
   "version": "0.0.0",
   "main": [
     "public/app.js",
@@ -16,6 +16,7 @@
     "lodash": "~2.3.0",
     "jquery": "~2.0.3",
     "console-polyfill": "~0.1.0",
-    "angular": "1.2.1"
+    "angular": "1.2.1",
+    "xdmessage": "~1.0.0"
   }
 }

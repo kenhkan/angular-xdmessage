@@ -1,22 +1,10 @@
-# Setup-free AngularJS Development Skeleton <br/>[![Dependency Status](https://david-dm.org/kenhkan/ng-brunch.png)](https://david-dm.org/kenhkan/ng-brunch) [![Stories in Ready](https://badge.waffle.io/kenhkan/ng-brunch.png)](http://waffle.io/kenhkan/ng-brunch)
+# XDMessage Wrapper <br/>[![Dependency Status](https://david-dm.org/kenhkan/angular-xdmessage.png)](https://david-dm.org/kenhkan/angular-xdmessage) [![Stories in Ready](https://badge.waffle.io/kenhkan/angular-xdmessage.png)](http://waffle.io/kenhkan/angular-xdmessage)
 
-You should be able to develop AngularJS without having to set anything up. This
-skeleton makes it easy to get started and to evolve with your project!
+This is an AngularJS module wrapper of
+[XDMessage](https://github.com/chute/xdmessage) for communicating between an
+iframe and its host page.
 
-
-## Motivation
-
-For AngularJS development,
-[angular-seed](https://github.com/angular/angular-seed) is a great starting
-point. [ngBoilerplate](https://github.com/ngbp/ng-boilerplate) is a fantastic
-improvement over angular-seed. Though you still need to install a bunch of
-dependencies and tinker with the Gruntfile unless you follow the ngBoilerplate
-way completely.
-
-Rather than handling everything as a monolithic asset pipeline, ng-brunch
-offloads the assembly workflow to [Brunch](http://brunch.io/). You need
-additional language support? Check out the [Brunch plugins
-page](https://github.com/brunch/brunch/wiki/Plugins) and you're set.
+This is buit on [ng-harp-brunch](https://github.com/kenhkan/ng-harp-brunch).
 
 
 ## Installation
