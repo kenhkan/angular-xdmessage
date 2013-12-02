@@ -1,3 +1,11 @@
+<a name="v0.0.5"></a>
+### v0.0.5 (2013-12-02)
+
+
+#### Bug Fixes
+
+* **postMessage:** use only one module namesapce ([2957e3db](https://github.com/kenhkan/angular-xdmessage/commit/2957e3db5ab3c81d64c1de75346b8cf98071bf3f))
+
 <a name="v0.0.4"></a>
 ### v0.0.4 (2013-12-02)
 

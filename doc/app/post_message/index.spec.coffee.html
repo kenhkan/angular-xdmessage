@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>index.spec.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "app/post_message/index.spec.coffee", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+  <script src="../../fileSearch.js"></script>
+  <script src="../../goToLine.js"></script>
+  <link rel="stylesheet" href="../../fileSearch.css" />
+  <link rel="stylesheet" href="../../goToLine.css" />
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>index.spec.coffee</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">describe</span> <span class="s">&#39;postMessage&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+  <span class="nv">controller = </span><span class="kc">null</span>
+  <span class="nv">directive = </span><span class="kc">null</span>
+  <span class="nv">template = </span><span class="kc">null</span>
+  <span class="nv">scope = </span><span class="kc">null</span>
+
+  <span class="nx">beforeEach</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">mock</span><span class="p">.</span><span class="nx">module</span> <span class="s">&#39;xdmessage&#39;</span>
+
+  <span class="nx">beforeEach</span> <span class="nx">inject</span> <span class="nf">($rootScope, $controller, $window) -&gt;</span>
+    <span class="nv">template = </span><span class="s">&#39;&#39;&#39;</span>
+<span class="s">      &lt;div post-message=&quot;postMessage&quot;</span>
+<span class="s">           remote-url=&quot;remoteUrl&quot;</span>
+<span class="s">           event-name=&quot;eventName&quot;</span>
+<span class="s">           send-message=&quot;sendMessage&quot;</span>
+<span class="s">      &gt;&lt;/div&gt;</span>
+<span class="s">    &#39;&#39;&#39;</span>
+    <span class="nv">$window.self = </span><span class="nx">$window</span><span class="p">.</span><span class="nx">top</span>
+    <span class="nv">scope = </span><span class="nx">$rootScope</span><span class="p">.</span><span class="nx">$new</span><span class="p">()</span>
+
+  <span class="nx">describe</span> <span class="s">&#39;checking sanity&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+
+    <span class="nx">it</span> <span class="s">&#39;expects a remoteUrl&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="nv">link = </span><span class="o">-&gt;</span>
+        <span class="nv">element = </span><span class="nx">$compile</span><span class="p">(</span><span class="nx">template</span><span class="p">)</span> <span class="nx">scope</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">link</span><span class="p">).</span><span class="nx">toThrow</span><span class="p">()</span>
+
+    <span class="nx">it</span> <span class="s">&#39;expects an eventName&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="nv">scope.remoteUrl = </span><span class="s">&#39;http://localhost:8888/&#39;</span>
+      <span class="nv">link = </span><span class="o">-&gt;</span>
+        <span class="nv">element = </span><span class="nx">$compile</span><span class="p">(</span><span class="nx">template</span><span class="p">)</span> <span class="nx">scope</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">link</span><span class="p">).</span><span class="nx">toThrow</span><span class="p">()</span>
+
+    <span class="nx">it</span> <span class="s">&#39;expects a sendMessage&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="nx">inject</span> <span class="nf">($compile) -&gt;</span>
+        <span class="nv">scope.remoteUrl = </span><span class="s">&#39;http://localhost:8888/&#39;</span>
+        <span class="nv">scope.eventName = </span><span class="s">&#39;event&#39;</span>
+        <span class="nv">scope.sendMessage = </span><span class="o">-&gt;</span>
+        <span class="nv">link = </span><span class="o">-&gt;</span>
+          <span class="nv">element = </span><span class="nx">$compile</span><span class="p">(</span><span class="nx">template</span><span class="p">)</span> <span class="nx">scope</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">link</span><span class="p">).</span><span class="o">not</span><span class="p">.</span><span class="nx">toThrow</span><span class="p">()</span>
+
+    <span class="nx">it</span> <span class="s">&#39;expects an onMessage if there is no sendMessage&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="nx">inject</span> <span class="nf">($compile) -&gt;</span>
+        <span class="nv">scope.remoteUrl = </span><span class="s">&#39;http://localhost:8888/&#39;</span>
+        <span class="nv">scope.eventName = </span><span class="s">&#39;event&#39;</span>
+        <span class="nv">scope.onMessage = </span><span class="o">-&gt;</span>
+        <span class="nv">link = </span><span class="o">-&gt;</span>
+          <span class="nv">element = </span><span class="nx">$compile</span><span class="p">(</span><span class="nx">template</span><span class="p">)</span> <span class="nx">scope</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">link</span><span class="p">).</span><span class="o">not</span><span class="p">.</span><span class="nx">toThrow</span><span class="p">()</span>
+
+  <span class="nx">describe</span> <span class="s">&#39;while communicating&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+
+    <span class="nx">it</span> <span class="s">&#39;is notified when ready&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="nx">inject</span> <span class="nf">($compile) -&gt;</span>
+        <span class="nv">isReady = </span><span class="kc">false</span>
+
+        <span class="nx">runs</span> <span class="o">-&gt;</span>
+          <span class="nv">scope.remoteUrl = </span><span class="s">&#39;http://localhost:8888/&#39;</span>
+          <span class="nv">scope.eventName = </span><span class="s">&#39;echo&#39;</span>
+          <span class="nv">scope.xdmReady = </span><span class="o">-&gt;</span>
+            <span class="nv">isReady = </span><span class="kc">true</span>
+          <span class="nv">element = </span><span class="nx">$compile</span><span class="p">(</span><span class="nx">template</span><span class="p">)</span> <span class="nx">scope</span>
+
+        <span class="nx">waitsFor</span> <span class="o">-&gt;</span>
+          <span class="nx">isReady</span>
+        <span class="p">,</span> <span class="s">&#39;never ready&#39;</span><span class="p">,</span> <span class="mi">100</span>
+
+    <span class="nx">it</span> <span class="s">&#39;sends a message&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="nx">inject</span> <span class="nf">($compile) -&gt;</span>
+        <span class="nv">ret = </span><span class="kc">null</span>
+
+        <span class="nx">runs</span> <span class="o">-&gt;</span>
+          <span class="nv">scope.remoteUrl = </span><span class="s">&#39;http://localhost:8888/&#39;</span>
+          <span class="nv">scope.eventName = </span><span class="s">&#39;echo&#39;</span>
+
+          <span class="nv">scope.xdmReady = </span><span class="o">-&gt;</span>
+            <span class="nx">element</span><span class="p">.</span><span class="nx">scope</span><span class="p">().</span><span class="nx">sendMessage</span>
+              <span class="nv">test: </span><span class="s">&#39;message&#39;</span>
+            <span class="p">,</span> <span class="nf">(data) -&gt;</span>
+              <span class="nv">ret = </span><span class="nx">data</span>
+
+          <span class="nv">element = </span><span class="nx">$compile</span><span class="p">(</span><span class="nx">template</span><span class="p">)</span> <span class="nx">scope</span>
+
+        <span class="nx">waitsFor</span> <span class="o">-&gt;</span>
+          <span class="nx">ret</span><span class="o">?</span><span class="p">.</span><span class="nx">test</span> <span class="o">is</span> <span class="s">&#39;message&#39;</span>
+        <span class="p">,</span> <span class="s">&#39;nothing has returned&#39;</span><span class="p">,</span> <span class="mi">100</span>
+
+    <span class="nx">it</span> <span class="s">&#39;receives a message&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="nx">inject</span> <span class="nf">($compile) -&gt;</span>
+        <span class="nv">ret = </span><span class="kc">null</span>
+
+        <span class="nx">runs</span> <span class="o">-&gt;</span>
+          <span class="nv">scope.remoteUrl = </span><span class="s">&#39;http://localhost:8888/&#39;</span>
+          <span class="nv">scope.eventName = </span><span class="s">&#39;yes&#39;</span>
+          <span class="nv">scope.onMessage = </span><span class="nf">(data) -&gt;</span>
+            <span class="nv">ret = </span><span class="nx">data</span>
+
+          <span class="nv">scope.xdmReady = </span><span class="o">-&gt;</span>
+            <span class="nx">element</span><span class="p">.</span><span class="nx">scope</span><span class="p">().</span><span class="nx">sendMessage</span> <span class="s">&#39;message&#39;</span>
+
+          <span class="nv">element = </span><span class="nx">$compile</span><span class="p">(</span><span class="nx">template</span><span class="p">)</span> <span class="nx">scope</span>
+
+        <span class="nx">waitsFor</span> <span class="o">-&gt;</span>
+          <span class="nx">ret</span> <span class="o">is</span> <span class="s">&#39;message&#39;</span>
+        <span class="p">,</span> <span class="s">&#39;nothing was received&#39;</span><span class="p">,</span> <span class="mi">100</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>
