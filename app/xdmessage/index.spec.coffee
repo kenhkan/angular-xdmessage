@@ -16,7 +16,7 @@ describe 'xdmessage', ->
         onReady = null
 
         runs ->
-          xdm = xdmessage.create 'http://localhost:8888/echo.html',
+          xdm = xdmessage.create 'http://localhost:8888/',
             container: container
           onReady = jasmine.createSpy 'onReady'
           xdm.on 'ready', onReady
@@ -36,7 +36,7 @@ describe 'xdmessage', ->
     it 'throws when there is no container', ->
       inject (xdmessage) ->
         create = ->
-          xdmessage.create 'http://localhost:8888/echo.html'
+          xdmessage.create 'http://localhost:8888/'
         expect(create).toThrow()
 
     it 'throws when running with child without XDMessage installed', ->

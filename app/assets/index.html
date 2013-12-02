@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <script src="/vendor.js"></script>
+
+    <script type="text/javascript">
+      window.onload = function() {
+        var xd = new XDMessage();
+
+        // Just echo
+        xd.on('echo', function(data, callback){
+          callback(data);
+        });
+
+        // Invoke with message to 'yes'
+        xd.on('yes', function(data){
+          xd.invoke('yes', 'message');
+        });
+
+        xd.open();
+      }
+    </script>
+  </body>
+</html>

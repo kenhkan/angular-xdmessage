@@ -25,14 +25,14 @@ describe 'postMessage', ->
       expect(link).toThrow()
 
     it 'expects an eventName', ->
-      scope.remoteUrl = 'http://localhost:8888/echo.html'
+      scope.remoteUrl = 'http://localhost:8888/'
       link = ->
         element = $compile(template) scope
       expect(link).toThrow()
 
     it 'expects a sendMessage', ->
       inject ($compile) ->
-        scope.remoteUrl = 'http://localhost:8888/echo.html'
+        scope.remoteUrl = 'http://localhost:8888/'
         scope.eventName = 'event'
         scope.sendMessage = ->
         link = ->
@@ -41,7 +41,7 @@ describe 'postMessage', ->
 
     it 'expects an onMessage if there is no sendMessage', ->
       inject ($compile) ->
-        scope.remoteUrl = 'http://localhost:8888/echo.html'
+        scope.remoteUrl = 'http://localhost:8888/'
         scope.eventName = 'event'
         scope.onMessage = ->
         link = ->
@@ -50,13 +50,28 @@ describe 'postMessage', ->
 
   describe 'while communicating', ->
 
+    it 'is notified when ready', ->
+      inject ($compile) ->
+        isReady = false
+
+        runs ->
+          scope.remoteUrl = 'http://localhost:8888/'
+          scope.eventName = 'echo'
+          scope.xdmReady = ->
+            isReady = true
+          element = $compile(template) scope
+
+        waitsFor ->
+          isReady
+        , 'never ready', 100
+
     it 'sends a message', ->
       inject ($compile) ->
         ret = null
 
         runs ->
-          scope.remoteUrl = 'http://localhost:8888/echo.html'
-          scope.eventName = 'test'
+          scope.remoteUrl = 'http://localhost:8888/'
+          scope.eventName = 'echo'
 
           scope.xdmReady = ->
             element.scope().sendMessage
@@ -69,3 +84,22 @@ describe 'postMessage', ->
         waitsFor ->
           ret?.test is 'message'
         , 'nothing has returned', 100
+
+    it 'receives a message', ->
+      inject ($compile) ->
+        ret = null
+
+        runs ->
+          scope.remoteUrl = 'http://localhost:8888/'
+          scope.eventName = 'yes'
+          scope.onMessage = (data) ->
+            ret = data
+
+          scope.xdmReady = ->
+            element.scope().sendMessage 'message'
+
+          element = $compile(template) scope
+
+        waitsFor ->
+          ret is 'message'
+        , 'nothing was received', 100
