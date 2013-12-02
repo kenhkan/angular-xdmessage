@@ -1,6 +1,6 @@
 {
   "name": "angular-xdmessage",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "description": "AngularJS wrapper of XDMessage",
   "homepage": "https://github.com/kenhkan/angular-xdmessage",
   "author": "Kenneth Kan <kenhkan@gmail.com>",
