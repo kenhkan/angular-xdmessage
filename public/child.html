@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <script src="/xdmessage.js"></script>
+
+    <script type="text/javascript">
+      window.onload = function() {
+        var xd = new XDMessage();
+
+        xd.on('ready', function() {
+          // ready
+        });
+
+        xd.on('test-message', function(data, callback){
+          console.log(data);
+          // > { "a" : "b" }
+          callback({ "b" : "c" });
+        });
+
+        xd.open();
+      }
+    </script>
+  </body>
+</html>
