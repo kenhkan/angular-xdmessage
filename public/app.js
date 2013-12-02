@@ -319,6 +319,39 @@
 ;(function() {
   var module;
 
+  module = angular.module('postMessage', ['xdmessage']);
+
+  module.directive('postMessage', function($window, xdmessage) {
+    return {
+      scope: true,
+      link: function($scope, $element, $attributes) {
+        var xdm;
+        if ($scope.remoteUrl == null) {
+          throw 'Attribute `remoteUrl` is expected';
+        }
+        if ($scope.eventName == null) {
+          throw 'Attribute `eventName` is expected';
+        }
+        xdm = xdmessage.create($scope.remoteUrl, {
+          container: $element[0]
+        });
+        xdm.on($scope.eventName, $scope.onMessage);
+        xdm.on('ready', function() {
+          return typeof $scope.xdmReady === "function" ? $scope.xdmReady() : void 0;
+        });
+        $scope.sendMessage = function(message, callback) {
+          return xdm.invoke($scope.eventName, message, callback);
+        };
+        return xdm.open();
+      }
+    };
+  });
+
+}).call(this);
+
+;(function() {
+  var module;
+
   module = angular.module('xdmessage', []);
 
   module.factory('xdmessage', function($window) {

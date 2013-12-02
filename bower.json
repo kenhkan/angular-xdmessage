@@ -1,7 +1,7 @@
 {
   "name": "angular-xdmessage",
   "repo": "kenhkan/angular-xdmessage",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": [
     "public/app.js",
     "public/templates.js",
