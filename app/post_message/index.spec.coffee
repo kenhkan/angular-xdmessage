@@ -4,7 +4,7 @@ describe 'postMessage', ->
   template = null
   scope = null
 
-  beforeEach angular.mock.module 'postMessage'
+  beforeEach angular.mock.module 'xdmessage'
 
   beforeEach inject ($rootScope, $controller, $window) ->
     template = '''

@@ -1,4 +1,4 @@
-module = angular.module 'postMessage', ['xdmessage']
+module = angular.module 'xdmessage'
 
 module.directive 'postMessage', ($window, xdmessage) ->
   scope: true

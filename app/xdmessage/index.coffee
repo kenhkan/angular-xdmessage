@@ -1,4 +1,4 @@
-module = angular.module 'xdmessage', []
+module = angular.module 'xdmessage'
 
 module.factory 'xdmessage', ($window) ->
   ###
