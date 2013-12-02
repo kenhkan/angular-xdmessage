@@ -22,6 +22,7 @@ exports.config =
           [
             # Include path to specific scripts. Perfect for building AngularJS
             # modules
+            'bower_components/xdmessage/xdmessage.js'
           ].indexOf(file) > -1
         # Specs are compiled into another file by themselves
         'spec.js': /^app\/.+\.spec\./
