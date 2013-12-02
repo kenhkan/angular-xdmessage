@@ -5,7 +5,7 @@
     directive = null;
     template = null;
     scope = null;
-    beforeEach(angular.mock.module('postMessage'));
+    beforeEach(angular.mock.module('xdmessage'));
     beforeEach(inject(function($rootScope, $controller, $window) {
       template = '<div post-message="postMessage"\n     remote-url="remoteUrl"\n     event-name="eventName"\n     send-message="sendMessage"\n></div>';
       $window.self = $window.top;

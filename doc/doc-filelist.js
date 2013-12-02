@@ -1,1 +1,1 @@
-var tree={"dirs":{"app":{"dirs":{"assets":{"files":["index.html"]},"post_message":{"files":["index.coffee","index.spec.coffee"]},"xdmessage":{"files":["index.coffee","index.spec.coffee"]}}}}};
+var tree={"dirs":{"app":{"dirs":{"assets":{"files":["index.html"]},"post_message":{"files":["index.coffee","index.spec.coffee"]},"xdmessage":{"files":["index.coffee","index.spec.coffee"]}},"files":["index.coffee"]}}};

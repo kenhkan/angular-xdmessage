@@ -319,7 +319,14 @@
 ;(function() {
   var module;
 
-  module = angular.module('postMessage', ['xdmessage']);
+  module = angular.module('xdmessage', []);
+
+}).call(this);
+
+;(function() {
+  var module;
+
+  module = angular.module('xdmessage');
 
   module.directive('postMessage', function($window, xdmessage) {
     return {
@@ -352,7 +359,7 @@
 ;(function() {
   var module;
 
-  module = angular.module('xdmessage', []);
+  module = angular.module('xdmessage');
 
   module.factory('xdmessage', function($window) {
     return {
