@@ -321,48 +321,29 @@
 
   module = angular.module('xdmessage', []);
 
-  module.provider('xdmessage', function() {
-    var container;
-    container = null;
+  module.factory('xdmessage', function($window) {
     return {
       /*
-        Provide the DOM reference to the intended XDMessage container
+        Get the XDMessage object by providing a URL to load as iframe in the specified container. If no
+        URL or container is provided, this is treated as the iframe itself. It would also
+        assume that this is the iframe when `window.self != window.top` or
+        container has not been set.
       
-        @param {DOMElement} container The container dom
+        @param {String=} url The URL to load as iframe
+        @param {DOMElement} params.container The container dom
+        @returns {XDMessage} the XDMessage object
       */
 
-      setContainer: function(_container) {
-        return container = _container;
-      },
-      $get: function($window) {
-        var XDM;
-        return new (XDM = (function() {
-          function XDM() {}
-
-          /*
-            Get the XDMessage object by providing a URL to load as iframe. If no
-            URL is provided, this is treated as the iframe itself. It would also
-            assume that this is the iframe when `window.self != window.top` or
-            container has not been set.
-          
-            @param {String=} url The URL to load as iframe
-            @returns {XDMessage} the XDMessage object
-          */
-
-
-          XDM.prototype.create = function(url) {
-            if ($window.self === $window.top && (container != null) && (url != null)) {
-              return new XDMessage(url, {
-                container: container
-              });
-            } else {
-              return new XDMessage();
-            }
-          };
-
-          return XDM;
-
-        })());
+      create: function(url, params) {
+        var container;
+        container = params.container;
+        if ($window.self === $window.top && (container != null) && (url != null)) {
+          return new XDMessage(url, {
+            container: container
+          });
+        } else {
+          return new XDMessage();
+        }
       }
     };
   });
