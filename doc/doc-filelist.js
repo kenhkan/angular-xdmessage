@@ -1,0 +1,1 @@
+var tree={"dirs":{"app":{"dirs":{"assets":{"files":["child.html","xdmessage.js"]}},"files":["index.coffee","index.spec.coffee"]}}};

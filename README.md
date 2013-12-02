@@ -1,4 +1,4 @@
-# XDMessage Wrapper <br/>[![Dependency Status](https://david-dm.org/kenhkan/angular-xdmessage.png)](https://david-dm.org/kenhkan/angular-xdmessage) [![Stories in Ready](https://badge.waffle.io/kenhkan/angular-xdmessage.png)](http://waffle.io/kenhkan/angular-xdmessage)
+# XDMessage AngularJS Wrapper <br/>[![Build Status](https://secure.travis-ci.org/kenhkan/angular-xdmessage.png?branch=master)](http://travis-ci.org/kenhkan/angular-xdmessage) [![Dependency Status](https://gemnasium.com/kenhkan/angular-xdmessage.png)](https://gemnasium.com/kenhkan/angular-xdmessage) [![NPM version](https://badge.fury.io/js/angular-xdmessage.png)](http://badge.fury.io/js/angular-xdmessage) [![Stories in Ready](https://badge.waffle.io/kenhkan/angular-xdmessage.png)](http://waffle.io/kenhkan/angular-xdmessage)
 
 This is an AngularJS module wrapper of
 [XDMessage](https://github.com/chute/xdmessage) for communicating between an
