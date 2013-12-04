@@ -8,42 +8,23 @@ describe 'postMessage', ->
 
   beforeEach inject ($rootScope, $controller, $window) ->
     template = '''
-      <div post-message="postMessage"
-           remote-url="remoteUrl"
-           event-name="eventName"
-           send-message="sendMessage"
-      ></div>
+      <post-message
+        remote-url="remoteUrl"
+        event-name="eventName"
+        post-message-exports="exports"
+      ></post-message>
     '''
     $window.self = $window.top
     scope = $rootScope.$new()
+    scope.exports = {}
 
   describe 'checking sanity', ->
 
-    it 'expects a remoteUrl', ->
-      link = ->
-        element = $compile(template) scope
-      expect(link).toThrow()
-
-    it 'expects an eventName', ->
-      scope.remoteUrl = 'http://localhost:8888/'
-      link = ->
-        element = $compile(template) scope
-      expect(link).toThrow()
-
-    it 'expects a sendMessage', ->
+    it 'expects a remoteUrl and an eventName', ->
       inject ($compile) ->
         scope.remoteUrl = 'http://localhost:8888/'
         scope.eventName = 'event'
-        scope.sendMessage = ->
-        link = ->
-          element = $compile(template) scope
-        expect(link).not.toThrow()
-
-    it 'expects an onMessage if there is no sendMessage', ->
-      inject ($compile) ->
-        scope.remoteUrl = 'http://localhost:8888/'
-        scope.eventName = 'event'
-        scope.onMessage = ->
+        scope.exports.onMessage = ->
         link = ->
           element = $compile(template) scope
         expect(link).not.toThrow()
@@ -57,7 +38,7 @@ describe 'postMessage', ->
         runs ->
           scope.remoteUrl = 'http://localhost:8888/'
           scope.eventName = 'echo'
-          scope.xdmReady = ->
+          scope.exports.onReady = ->
             isReady = true
           element = $compile(template) scope
 
@@ -73,8 +54,8 @@ describe 'postMessage', ->
           scope.remoteUrl = 'http://localhost:8888/'
           scope.eventName = 'echo'
 
-          scope.xdmReady = ->
-            element.scope().sendMessage
+          scope.exports.onReady = ->
+            element.scope().exports.sendMessage
               test: 'message'
             , (data) ->
               ret = data
@@ -92,11 +73,11 @@ describe 'postMessage', ->
         runs ->
           scope.remoteUrl = 'http://localhost:8888/'
           scope.eventName = 'yes'
-          scope.onMessage = (data) ->
+          scope.exports.onMessage = (data) ->
             ret = data
 
-          scope.xdmReady = ->
-            element.scope().sendMessage 'message'
+          scope.exports.onReady = ->
+            element.scope().exports.sendMessage 'message'
 
           element = $compile(template) scope
 
