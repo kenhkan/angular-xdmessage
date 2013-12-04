@@ -330,7 +330,12 @@
 
   module.directive('postMessage', function($window, xdmessage) {
     return {
-      scope: true,
+      restrict: 'EA',
+      scope: {
+        remoteUrl: '=',
+        eventName: '=',
+        postMessageExports: '='
+      },
       link: function($scope, $element, $attributes) {
         var xdm;
         if ($scope.remoteUrl == null) {
@@ -342,11 +347,9 @@
         xdm = xdmessage.create($scope.remoteUrl, {
           container: $element[0]
         });
-        xdm.on($scope.eventName, $scope.onMessage);
-        xdm.on('ready', function() {
-          return typeof $scope.xdmReady === "function" ? $scope.xdmReady() : void 0;
-        });
-        $scope.sendMessage = function(message, callback) {
+        xdm.on($scope.eventName, $scope.postMessageExports.onMessage);
+        xdm.on('ready', $scope.postMessageExports.onReady);
+        $scope.postMessageExports.sendMessage = function(message, callback) {
           return xdm.invoke($scope.eventName, message, callback);
         };
         return xdm.open();

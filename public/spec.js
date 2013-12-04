@@ -7,47 +7,18 @@
     scope = null;
     beforeEach(angular.mock.module('xdmessage'));
     beforeEach(inject(function($rootScope, $controller, $window) {
-      template = '<div post-message="postMessage"\n     remote-url="remoteUrl"\n     event-name="eventName"\n     send-message="sendMessage"\n></div>';
+      template = '<post-message\n  remote-url="remoteUrl"\n  event-name="eventName"\n  post-message-exports="exports"\n></post-message>';
       $window.self = $window.top;
-      return scope = $rootScope.$new();
+      scope = $rootScope.$new();
+      return scope.exports = {};
     }));
     describe('checking sanity', function() {
-      it('expects a remoteUrl', function() {
-        var link;
-        link = function() {
-          var element;
-          return element = $compile(template)(scope);
-        };
-        return expect(link).toThrow();
-      });
-      it('expects an eventName', function() {
-        var link;
-        scope.remoteUrl = 'http://localhost:8888/';
-        link = function() {
-          var element;
-          return element = $compile(template)(scope);
-        };
-        return expect(link).toThrow();
-      });
-      it('expects a sendMessage', function() {
+      return it('expects a remoteUrl and an eventName', function() {
         return inject(function($compile) {
           var link;
           scope.remoteUrl = 'http://localhost:8888/';
           scope.eventName = 'event';
-          scope.sendMessage = function() {};
-          link = function() {
-            var element;
-            return element = $compile(template)(scope);
-          };
-          return expect(link).not.toThrow();
-        });
-      });
-      return it('expects an onMessage if there is no sendMessage', function() {
-        return inject(function($compile) {
-          var link;
-          scope.remoteUrl = 'http://localhost:8888/';
-          scope.eventName = 'event';
-          scope.onMessage = function() {};
+          scope.exports.onMessage = function() {};
           link = function() {
             var element;
             return element = $compile(template)(scope);
@@ -65,7 +36,7 @@
             var element;
             scope.remoteUrl = 'http://localhost:8888/';
             scope.eventName = 'echo';
-            scope.xdmReady = function() {
+            scope.exports.onReady = function() {
               return isReady = true;
             };
             return element = $compile(template)(scope);
@@ -83,8 +54,8 @@
             var element;
             scope.remoteUrl = 'http://localhost:8888/';
             scope.eventName = 'echo';
-            scope.xdmReady = function() {
-              return element.scope().sendMessage({
+            scope.exports.onReady = function() {
+              return element.scope().exports.sendMessage({
                 test: 'message'
               }, function(data) {
                 return ret = data;
@@ -105,11 +76,11 @@
             var element;
             scope.remoteUrl = 'http://localhost:8888/';
             scope.eventName = 'yes';
-            scope.onMessage = function(data) {
+            scope.exports.onMessage = function(data) {
               return ret = data;
             };
-            scope.xdmReady = function() {
-              return element.scope().sendMessage('message');
+            scope.exports.onReady = function() {
+              return element.scope().exports.sendMessage('message');
             };
             return element = $compile(template)(scope);
           });
