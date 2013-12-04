@@ -334,7 +334,7 @@
       scope: {
         remoteUrl: '=',
         eventName: '=',
-        postMessageExports: '='
+        exports: '=postMessageExports'
       },
       link: function($scope, $element, $attributes) {
         var xdm;
@@ -347,9 +347,9 @@
         xdm = xdmessage.create($scope.remoteUrl, {
           container: $element[0]
         });
-        xdm.on($scope.eventName, $scope.postMessageExports.onMessage);
-        xdm.on('ready', $scope.postMessageExports.onReady);
-        $scope.postMessageExports.sendMessage = function(message, callback) {
+        xdm.on($scope.eventName, $scope.exports.onMessage);
+        xdm.on('ready', $scope.exports.onReady);
+        $scope.exports.sendMessage = function(message, callback) {
           return xdm.invoke($scope.eventName, message, callback);
         };
         return xdm.open();

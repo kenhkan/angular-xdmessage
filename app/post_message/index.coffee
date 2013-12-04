@@ -6,7 +6,7 @@ module.directive 'postMessage', ($window, xdmessage) ->
   scope:
     remoteUrl: '='
     eventName: '='
-    postMessageExports: '='
+    exports: '=postMessageExports'
 
   link: ($scope, $element, $attributes) ->
     # Sanity checks
@@ -17,12 +17,12 @@ module.directive 'postMessage', ($window, xdmessage) ->
       container: $element[0]
 
     # Set up receiver
-    xdm.on $scope.eventName, $scope.postMessageExports.onMessage
+    xdm.on $scope.eventName, $scope.exports.onMessage
 
-    xdm.on 'ready', $scope.postMessageExports.onReady
+    xdm.on 'ready', $scope.exports.onReady
 
     # Set up sender
-    $scope.postMessageExports.sendMessage = (message, callback) ->
+    $scope.exports.sendMessage = (message, callback) ->
       xdm.invoke $scope.eventName, message, callback
 
     # Load iframe
