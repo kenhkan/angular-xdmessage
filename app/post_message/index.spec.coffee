@@ -11,12 +11,12 @@ describe 'postMessage', ->
       <post-message
         remote-url="remoteUrl"
         event-name="eventName"
-        post-message-exports="exports"
+        post-message-exports="postMessage"
       ></post-message>
     '''
     $window.self = $window.top
     scope = $rootScope.$new()
-    scope.exports = {}
+    scope.postMessage = {}
 
   describe 'checking sanity', ->
 
@@ -24,7 +24,7 @@ describe 'postMessage', ->
       inject ($compile) ->
         scope.remoteUrl = 'http://localhost:8888/'
         scope.eventName = 'event'
-        scope.exports.onMessage = ->
+        scope.postMessage.onMessage = ->
         link = ->
           element = $compile(template) scope
         expect(link).not.toThrow()
@@ -38,7 +38,7 @@ describe 'postMessage', ->
         runs ->
           scope.remoteUrl = 'http://localhost:8888/'
           scope.eventName = 'echo'
-          scope.exports.onReady = ->
+          scope.postMessage.onReady = ->
             isReady = true
           element = $compile(template) scope
 
@@ -54,8 +54,8 @@ describe 'postMessage', ->
           scope.remoteUrl = 'http://localhost:8888/'
           scope.eventName = 'echo'
 
-          scope.exports.onReady = ->
-            element.scope().exports.sendMessage
+          scope.postMessage.onReady = ->
+            element.scope().postMessage.sendMessage
               test: 'message'
             , (data) ->
               ret = data
@@ -73,11 +73,11 @@ describe 'postMessage', ->
         runs ->
           scope.remoteUrl = 'http://localhost:8888/'
           scope.eventName = 'yes'
-          scope.exports.onMessage = (data) ->
+          scope.postMessage.onMessage = (data) ->
             ret = data
 
-          scope.exports.onReady = ->
-            element.scope().exports.sendMessage 'message'
+          scope.postMessage.onReady = ->
+            element.scope().postMessage.sendMessage 'message'
 
           element = $compile(template) scope
 

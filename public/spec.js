@@ -7,10 +7,10 @@
     scope = null;
     beforeEach(angular.mock.module('xdmessage'));
     beforeEach(inject(function($rootScope, $controller, $window) {
-      template = '<post-message\n  remote-url="remoteUrl"\n  event-name="eventName"\n  post-message-exports="exports"\n></post-message>';
+      template = '<post-message\n  remote-url="remoteUrl"\n  event-name="eventName"\n  post-message-exports="postMessage"\n></post-message>';
       $window.self = $window.top;
       scope = $rootScope.$new();
-      return scope.exports = {};
+      return scope.postMessage = {};
     }));
     describe('checking sanity', function() {
       return it('expects a remoteUrl and an eventName', function() {
@@ -18,7 +18,7 @@
           var link;
           scope.remoteUrl = 'http://localhost:8888/';
           scope.eventName = 'event';
-          scope.exports.onMessage = function() {};
+          scope.postMessage.onMessage = function() {};
           link = function() {
             var element;
             return element = $compile(template)(scope);
@@ -36,7 +36,7 @@
             var element;
             scope.remoteUrl = 'http://localhost:8888/';
             scope.eventName = 'echo';
-            scope.exports.onReady = function() {
+            scope.postMessage.onReady = function() {
               return isReady = true;
             };
             return element = $compile(template)(scope);
@@ -54,8 +54,8 @@
             var element;
             scope.remoteUrl = 'http://localhost:8888/';
             scope.eventName = 'echo';
-            scope.exports.onReady = function() {
-              return element.scope().exports.sendMessage({
+            scope.postMessage.onReady = function() {
+              return element.scope().postMessage.sendMessage({
                 test: 'message'
               }, function(data) {
                 return ret = data;
@@ -76,11 +76,11 @@
             var element;
             scope.remoteUrl = 'http://localhost:8888/';
             scope.eventName = 'yes';
-            scope.exports.onMessage = function(data) {
+            scope.postMessage.onMessage = function(data) {
               return ret = data;
             };
-            scope.exports.onReady = function() {
-              return element.scope().exports.sendMessage('message');
+            scope.postMessage.onReady = function() {
+              return element.scope().postMessage.sendMessage('message');
             };
             return element = $compile(template)(scope);
           });
