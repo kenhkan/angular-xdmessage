@@ -5,10 +5,10 @@ exports.config =
   conventions:
     assets: /^app\/assets\//
 
-  # Use AngularJS dependency injection as library management
+  # Use RequireJS
   modules:
-    definition: false
-    wrapper: false
+    definition: 'amd'
+    wrapper: 'amd'
 
   server:
     port: 8888
