@@ -38324,6 +38324,11 @@ if(window.jasmine || window.mocha) {
         iframe.style.overflow='auto';
         iframe.onload = this._frameReady;
 
+        // Assign style
+        for (var key in (this.options.style || [])) {
+          iframe.style[key] = this.options.style[key];
+        }
+
         if (this.options.target) {
           this.options.target.appendChild(iframe);
         } else {
