@@ -17,12 +17,16 @@ module.directive 'postMessage', ($window, xdmessage) ->
       container: $element[0]
 
     # Set up receiver
-    xdm.on $scope.eventName, $scope.exports.onMessage
+    xdm.on $scope.eventName, (message, callback) ->
+      message = JSON.parse message
+      $scope.exports?.onMessage message, callback
 
-    xdm.on 'ready', $scope.exports.onReady
+    xdm.on 'ready', ->
+      $scope.exports?.onReady?()
 
     # Set up sender
     $scope.exports.sendMessage = (message, callback) ->
+      message = JSON.stringify message
       xdm.invoke $scope.eventName, message, callback
 
     # Load iframe
