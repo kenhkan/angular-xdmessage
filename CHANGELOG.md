@@ -1,3 +1,11 @@
+<a name="v0.0.7"></a>
+### v0.0.7 (2013-12-05)
+
+
+#### Features
+
+* **xdmessage:** load xdm asynchronously ([7db2439e](https://github.com/kenhkan/angular-xdmessage/commit/7db2439ee4442bc060b1da050cca7bd166cc713d))
+
 <a name="v0.0.6"></a>
 ### v0.0.6 (2013-12-04)
 
