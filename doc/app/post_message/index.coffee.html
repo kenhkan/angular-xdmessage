@@ -47,6 +47,7 @@
   <span class="nv">restrict: </span><span class="s">&#39;EA&#39;</span>
 
   <span class="nv">scope:</span>
+    <span class="nv">xdmessageParams: </span><span class="s">&#39;=&#39;</span>
     <span class="nv">remoteUrl: </span><span class="s">&#39;=&#39;</span>
     <span class="nv">eventName: </span><span class="s">&#39;=&#39;</span>
     <span class="nv">exports: </span><span class="s">&#39;=postMessageExports&#39;</span>
@@ -69,6 +70,7 @@
 
     <span class="nx">xdmessage</span><span class="p">.</span><span class="nx">create</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">remoteUrl</span><span class="p">,</span>
       <span class="nv">container: </span><span class="nx">$element</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+      <span class="nv">xdmessageParams: </span><span class="nx">$scope</span><span class="p">.</span><span class="nx">xdmessageParams</span>
     <span class="p">,</span> <span class="nf">(xdm) -&gt;</span>
 
 </pre></div>

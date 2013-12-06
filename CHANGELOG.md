@@ -1,3 +1,11 @@
+<a name="v0.0.8"></a>
+### v0.0.8 (2013-12-06)
+
+
+#### Bug Fixes
+
+* **xdmessage:** retain session info by capturing outside of Angular ([95b9a1f6](https://github.com/kenhkan/angular-xdmessage/commit/95b9a1f61c25523d0f0fd04f0646475bf5e0e872))
+
 <a name="v0.0.7"></a>
 ### v0.0.7 (2013-12-05)
 
