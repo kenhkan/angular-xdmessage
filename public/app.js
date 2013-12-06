@@ -31,13 +31,17 @@
           xdmessageParams: $scope.xdmessageParams
         }, function(xdm) {
           xdm.on($scope.eventName, function(message, callback) {
-            var _ref;
-            message = JSON.parse(message);
-            return (_ref = $scope.exports) != null ? _ref.onMessage(message, callback) : void 0;
+            return $scope.$apply(function() {
+              var _ref;
+              message = JSON.parse(message);
+              return (_ref = $scope.exports) != null ? _ref.onMessage(message, callback) : void 0;
+            });
           });
           xdm.on('ready', function() {
-            var _ref;
-            return (_ref = $scope.exports) != null ? typeof _ref.onReady === "function" ? _ref.onReady() : void 0 : void 0;
+            return $scope.$apply(function() {
+              var _ref;
+              return (_ref = $scope.exports) != null ? typeof _ref.onReady === "function" ? _ref.onReady() : void 0 : void 0;
+            });
           });
           $scope.exports.sendMessage = function(message, callback) {
             message = JSON.stringify(message);
