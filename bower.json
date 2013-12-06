@@ -18,6 +18,6 @@
     "angular": "~1.2.0",
     "console-polyfill": "~0.1.0",
     "angular-mocks": "~1.2.0",
-    "xdmessage": "~1.0.0"
+    "xdmessage": "https://github.com/kenhkan/xdmessage/tarball/master"
   }
 }

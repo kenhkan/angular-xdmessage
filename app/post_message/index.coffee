@@ -4,6 +4,7 @@ module.directive 'postMessage', ($window, xdmessage) ->
   restrict: 'EA'
 
   scope:
+    xdmessageParams: '='
     remoteUrl: '='
     eventName: '='
     exports: '=postMessageExports'
@@ -15,6 +16,7 @@ module.directive 'postMessage', ($window, xdmessage) ->
 
     xdmessage.create $scope.remoteUrl,
       container: $element[0]
+      xdmessageParams: $scope.xdmessageParams
     , (xdm) ->
       # Set up receiver
       xdm.on $scope.eventName, (message, callback) ->

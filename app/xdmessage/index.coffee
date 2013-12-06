@@ -1,5 +1,22 @@
 module = angular.module 'xdmessage'
 
+# This must happen outside of Angular because Angular could erase the URL
+# before any code in Angular runs
+opener = null
+token = null
+search = window.location.search[1...]
+terms = search.split '&'
+
+for term in terms
+  [ key, value ] = term.split '='
+  switch key
+    # The window host URL
+    when 'opener'
+      opener = decodeURIComponent value
+    # The session token
+    when 'XDMessage_token'
+      token = value
+
 module.factory 'xdmessage', ($window) ->
   ###
     Get the XDMessage object by providing a URL to load as iframe in the
@@ -27,7 +44,9 @@ module.factory 'xdmessage', ($window) ->
             width: '100%'
             height: '100%'
       else
-        done new XDMessage()
+        done new XDMessage
+          windowHostURL: opener
+          token: token
 
     # AMD
     if typeof define is "function" and define.amd
