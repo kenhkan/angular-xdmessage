@@ -20,11 +20,13 @@ module.directive 'postMessage', ($window, xdmessage) ->
     , (xdm) ->
       # Set up receiver
       xdm.on $scope.eventName, (message, callback) ->
-        message = JSON.parse message
-        $scope.exports?.onMessage message, callback
+        $scope.$apply ->
+          message = JSON.parse message
+          $scope.exports?.onMessage message, callback
 
       xdm.on 'ready', ->
-        $scope.exports?.onReady?()
+        $scope.$apply ->
+          $scope.exports?.onReady?()
 
       # Set up sender
       $scope.exports.sendMessage = (message, callback) ->
