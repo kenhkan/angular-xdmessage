@@ -14,6 +14,7 @@
     return {
       restrict: 'EA',
       scope: {
+        xdmessageParams: '=',
         remoteUrl: '=',
         eventName: '=',
         exports: '=postMessageExports'
@@ -26,7 +27,8 @@
           throw 'Attribute `eventName` is expected';
         }
         return xdmessage.create($scope.remoteUrl, {
-          container: $element[0]
+          container: $element[0],
+          xdmessageParams: $scope.xdmessageParams
         }, function(xdm) {
           xdm.on($scope.eventName, function(message, callback) {
             var _ref;
@@ -50,9 +52,29 @@
 }).call(this);
 
 ;(function() {
-  var module;
+  var key, module, opener, search, term, terms, token, value, _i, _len, _ref;
 
   module = angular.module('xdmessage');
+
+  opener = null;
+
+  token = null;
+
+  search = window.location.search.slice(1);
+
+  terms = search.split('&');
+
+  for (_i = 0, _len = terms.length; _i < _len; _i++) {
+    term = terms[_i];
+    _ref = term.split('='), key = _ref[0], value = _ref[1];
+    switch (key) {
+      case 'opener':
+        opener = decodeURIComponent(value);
+        break;
+      case 'XDMessage_token':
+        token = value;
+    }
+  }
 
   module.factory('xdmessage', function($window) {
     return {
@@ -84,7 +106,10 @@
               }
             }));
           } else {
-            return done(new XDMessage());
+            return done(new XDMessage({
+              windowHostURL: opener,
+              token: token
+            }));
           }
         };
         if (typeof define === "function" && define.amd) {
