@@ -1,3 +1,11 @@
+<a name="v0.0.9"></a>
+### v0.0.9 (2013-12-08)
+
+
+#### Features
+
+* **postMessage:** start digest cycle on return ([c2c51f75](https://github.com/kenhkan/angular-xdmessage/commit/c2c51f750aebfa05a5a45fdf05a1d385634e7512))
+
 <a name="v0.0.8"></a>
 ### v0.0.8 (2013-12-06)
 

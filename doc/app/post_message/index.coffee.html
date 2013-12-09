@@ -85,11 +85,13 @@
         </td>
         <td class="code highlight"><div class="highlight"><pre>
       <span class="nx">xdm</span><span class="p">.</span><span class="kc">on</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">eventName</span><span class="p">,</span> <span class="nf">(message, callback) -&gt;</span>
-        <span class="nv">message = </span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span> <span class="nx">message</span>
-        <span class="nx">$scope</span><span class="p">.</span><span class="nx">exports</span><span class="o">?</span><span class="p">.</span><span class="nx">onMessage</span> <span class="nx">message</span><span class="p">,</span> <span class="nx">callback</span>
+        <span class="nx">$scope</span><span class="p">.</span><span class="nx">$apply</span> <span class="o">-&gt;</span>
+          <span class="nv">message = </span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span> <span class="nx">message</span>
+          <span class="nx">$scope</span><span class="p">.</span><span class="nx">exports</span><span class="o">?</span><span class="p">.</span><span class="nx">onMessage</span> <span class="nx">message</span><span class="p">,</span> <span class="nx">callback</span>
 
       <span class="nx">xdm</span><span class="p">.</span><span class="kc">on</span> <span class="s">&#39;ready&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
-        <span class="nx">$scope</span><span class="p">.</span><span class="nx">exports</span><span class="o">?</span><span class="p">.</span><span class="nx">onReady</span><span class="o">?</span><span class="p">()</span>
+        <span class="nx">$scope</span><span class="p">.</span><span class="nx">$apply</span> <span class="o">-&gt;</span>
+          <span class="nx">$scope</span><span class="p">.</span><span class="nx">exports</span><span class="o">?</span><span class="p">.</span><span class="nx">onReady</span><span class="o">?</span><span class="p">()</span>
 
 
 </pre></div>
